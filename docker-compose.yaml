@@ -2,14 +2,11 @@ version: '3.7'
 
 services:
   app:
+    build: .
     container_name: node_app
-    build:
-      context: .
-      target: dev
-    command: npm run start:dev
+    entrypoint: .docker/entrypoint.sh
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:/home/node/app
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     env_file: .env

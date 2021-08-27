@@ -1,17 +1,9 @@
-FROM node:latest AS dev
+FROM node:14.15.4-alpine3.12
 
-WORKDIR /usr/src/app
+RUN apk add --no-cache bash
 
-COPY package*.json ./
+RUN npm i -g @nestjs/cli@7.6.0
 
-RUN npm install glob rimraf
+USER node
 
-RUN npm install --only-development
-
-COPY . .
-
-RUN npm run build
-
-EXPOSE 3000
-
-CMD ["npm", "run", "start"]
+WORKDIR /home/node/app
