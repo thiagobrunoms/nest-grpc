@@ -10,6 +10,7 @@ async function bootstrap() {
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {
+      url: '0.0.0.0:50051',
       package: 'hero',
       protoPath: join(__dirname, 'hero/proto/hero.proto'),
     },
